@@ -19,13 +19,14 @@
 </body>
 <script>
     
-    // 自调用函数-->食物
+    // 自调用函数-->食物对象
     (function (){
-        // 删除之前的🍞
-        remove();
-        
         // 存放食物
         var elements = [];
+       
+        remove();
+
+        
         // 食物的构造方法
         function Food(x,y,width,height,color){
             // 坐标
@@ -38,7 +39,9 @@
             this.color = color || "#555";
         }
 
-        Food.prototype.init = function (map){
+        Food.prototype.init = function (map){ 
+            // 删除之前的🍞
+            remove();
             var food = document.createElement("div");
             map.appendChild(food);
             // 脱离文档流
@@ -59,16 +62,18 @@
 
         // 删除
         function remove(){
-            for(var i=0;i<elements;i++){
-                elements[i].parentNode.removeChild(elements[i]);
-                elements.splice(i,1);
+            if(elements.length>0){
+                for(var i=elements.length-1;i>=0;i--){
+                    elements[i].parentNode.removeChild(elements[i]);
+                    elements.splice(i,1);   // 注意：表示在第i个位置删除n个元素
+                } 
             }
         };
         window.Food = Food;
 
     }());
 
-    // 自调用函数--> 小蛇
+    // 自调用函数--> 小蛇对象
     (function(){
         var elements = [];
         //
@@ -80,8 +85,10 @@
                 {x:2,y:3,color:"orange"},   // 身体
                 {x:1,y:3,color:"orange"}    // 身体
             ];
-            this.direction = direction;
+            this.direction = direction || "right";
         };
+        
+        // 初始化函数
         Snake.prototype.init = function(map){
             // 删除之前的🐍
             remove();
@@ -98,22 +105,116 @@
 
                 elements.push(div);
             }
+        };
+        
+        // 蛇移动函数
+        Snake.prototype.move = function(food,map){
+            // 身体部分都使用前一个div的坐标
+            for(var i=this.body.length-1;i>0;i--){
+                this.body[i].x = this.body[i-1].x;
+                this.body[i].y = this.body[i-1].y;
+            }
+            // 改变移动方向
+            switch(this.direction){
+                case "left":
+                    this.body[0].x -= 1;
+                    break; 
+                case "right" :
+                    this.body[0].x += 1;
+                    break; 
+                case "top" :
+                    this.body[0].y -= 1;
+                    break; 
+                case "bottom" :
+                    this.body[0].y += 1;
+                    break; 
+            }
 
+            // 食物撞击检测
+            var headX = this.body[0].x * this.width;
+            var headY = this.body[0].y * this.height;
+            if(headX == food.x && headY == food.y){
+                var lastBody = this.body[this.body.length-1];
+                this.body.push({
+                    x:lastBody.x,
+                    y:lastBody.y,
+                    color:lastBody.color
+                });
+                food.init(map);
+            }
+
+
+            // 重新绘制小蛇
+            this.init(map);
         };
         // 删除
         function remove(){
-            for(var i=0;i<elements;i++){
-                elements[i].parentNode.removeChild(elements[i]);
-                elements.splice(i,1);
+            if(elements.length>0){
+                for(var i=elements.length-1;i>=0;i--){
+                    elements[i].parentNode.removeChild(elements[i]);
+                    elements.splice(i,1);   // 注意：表示在第i个位置删除n个元素
+                } 
             }
         };
         window.Snake = Snake;
     }());
 
+    // 自调用函数--> 游戏对象
+    (function(){
+        function Game(map){
+            this.food = new Food();
+            this.snake = new Snake();
+            this.map = map;
+            that = this;
+        };
+
+        Game.prototype.init = function(){
+            this.food.init(this.map);
+            this.snake.init(this.map);
+            this.autoMove(this.food,this.map);
+            this.bindKey();
+        };
+
+        // 小蛇自动移动
+        Game.prototype.autoMove = function(food,map){
+            var timeId = setInterval(function(){
+                this.snake.move(food,map);
+                
+                // 边界撞击检测
+                var borderRight = map.offsetWidth / this.snake.width ;
+                var borderBottom = map.offsetHeight / this.snake.height ;
+                if(this.snake.body[0].x<0 || this.snake.body[0].x> borderRight-1 ||
+                    this.snake.body[0].y<0 || this.snake.body[0].y> borderBottom-1  ){
+                    clearInterval(timeId);
+                    alert("GG!");
+                }
+            }.bind(that),200);
+        };
+
+        //
+        Game.prototype.bindKey = function(){
+            document.addEventListener("keydown",function(e){
+                console.log("按键按下");
+                switch(e.keyCode){
+                    case 37:this.snake.direction="left";break;
+                    case 38:this.snake.direction="top";break;
+                    case 39:this.snake.direction="right";break;
+                    case 40:this.snake.direction="bottom";break;
+                }
+            }.bind(that),false);
+        };
+
+        window.Game = Game;
+
+    }());
     // 测试代码
-    var food = new Food();
-    var snake = new Snake();
-    food.init(document.querySelector(".map"));
-    snake.init(document.querySelector(".map"));
+    // var food = new Food();
+    // var snake = new Snake();
+    // food.init(document.querySelector(".map"));
+    // snake.init(document.querySelector(".map"));
+    // snake.move(food,document.querySelector(".map"))
+    // snake.init(document.querySelector(".map"));
+    var game = new Game(document.querySelector(".map"));
+    game.init();
 </script>
 </html>
