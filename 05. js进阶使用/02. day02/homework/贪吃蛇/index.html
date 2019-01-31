@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .map{
+        width: 600px;
+        height: 400px;
+        position: relative;
+        background-color: #CCC;
+    }
+    </style>
+</head>
+<body>
+    <div class="map"></div>
+</body>
+<script>
+    // 自调用函数：随机食物
+    (function(){
+        var elements = [];
+        // 食物构造函数
+        function Food(x,y,width,height,color){
+            // 坐标
+            this.x = x || 0;
+            this.y = y || 0;
+            // 大小
+            this.width = width || 20;
+            this.height = height || 20;
+            // 颜色
+            this.color = color || "blue";
+        }
+        // 食物初始化
+        Food.prototype.init = function (map){
+            // 每次生成食物之前，先删除旧食物
+            remove();
+            var food = document.createElement("div");
+            map.appendChild(food);
+            // 脱标
+            food.style.position="absolute";
+            // 设置外观、尺寸
+            food.style.backgroundColor = this.color;
+            food.style.width = this.width+"px";
+            food.style.height = this.height+"px";
+            // 设置坐标
+            food.style.left = parseInt(Math.random() * (map.offsetWidth/this.width)) * this.width + "px";
+            food.style.top = parseInt(Math.random() * (map.offsetHeight/this.height)) * this.height + "px";
+            
+            // 加入待删除列表
+            elements.push(food);
+        };
+        // 删除旧食物
+        // 注意：如果不写入原型，则remove方法为私有，window中的food对象无法直接访问
+        // Food.prototype.remove = function (){
+        remove = function (){
+            for(var i=elements.length-1;i>=0;i--){
+                // 删除页面元素
+                elements[i].parentNode.removeChild(elements[i]);
+                // 删除数组元素
+                elements.splice(i,1);
+            }
+        };
+        // 将Food暴露给window
+        window.Food = Food;
+    }());
+
+    // 自调用函数：小蛇
+    // 构造函数（暴露给window）、初始化方法（原型）、移动方法（原型，TODO:食物撞击）、删除方法（私有）
+    (function(){
+        var elements = [];
+        // 小蛇构造方法
+        function Snake(width,height,direction){
+            this.width = width || 20;
+            this.height = height ||20;
+            this.body=[
+                {x:3,y:2,color:"red"},
+                {x:2,y:2,color:"orange"},
+                {x:1,y:2,color:"orange"}
+            ];
+            this.direction = direction || "right";
+        };
+        // 小蛇初始化(把小蛇画到页面上)
+        Snake.prototype.init = function(map){
+            for(var i=0;i<this.body.length;i++){
+                var snake = document.createElement("div");
+                map.appendChild(snake);
+                snake.style.position = "absolute";
+                snake.style.width = this.width + "px";
+                snake.style.height = this.height + "px";
+                snake.style.left = this.body[i].x * this.width+ "px";
+                snake.style.top = this.body[i].y * this.height+ "px";
+                snake.style.backgroundColor = this.body[i].color;
+                elements.push(snake);
+            }
+         };
+         //小蛇移动(每调用一次就按照目前的方向走一格)
+         //实际上是在当前方向的前一格上面画一条蛇
+         Snake.prototype.move = function(map){
+             remove();
+             // 身体各部分向前一步
+            for(var i=this.body.length-1;i>0;i--){
+                this.body[i].x = this.body[i-1].x;
+                this.body[i].y = this.body[i-1].y;
+            }
+            switch(this.direction){
+                case "left":    this.body[0].x -= 1;break;
+                case "right":   this.body[0].x += 1;break;
+                case "top":     this.body[0].y -= 1;break;
+                case "bottom":  this.body[0].y += 1;break;
+            }
+            this.init(map);
+         }
+         //删除旧的蛇
+         function remove(){
+             for(var i=elements.length-1;i>=0;i--){
+                 elements[i].parentNode.removeChild(elements[i]);
+                 elements.splice(i,1);
+             }
+         }
+         window.Snake = Snake;
+    }());
+
+    // 自调用函数：游戏
+    // 构造函数（暴露给window）、初始化（原型）、小蛇移动的定时方法（原型，边界撞击），按键按下检测（原型）
+    (function(){
+
+    }());
+
+    // 测试
+    var food = new Food();
+    var snake = new Snake();
+    food.init(document.querySelector(".map"));
+    snake.init(document.querySelector(".map"));
+    snake.move(document.querySelector(".map"));
+    snake.move(document.querySelector(".map"));
+</script>
+</html>
