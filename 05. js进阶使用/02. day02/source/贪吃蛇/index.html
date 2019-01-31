@@ -11,7 +11,6 @@
         height: 600px;
         background-color: #ccc;
         position: relative;
-        z-index:-1;
     }
     </style>
 </head>
@@ -19,44 +18,102 @@
     <div class="map"></div>
 </body>
 <script>
-// 食物
-(function (){
-    // 存放食物
-    var elements = [];
-    // 食物的构造方法
-    function Food(x,y,width,height,color){
-        // 坐标
-        this.x = x || 0;
-        this.y = y || 0;
-        // 食物的大小
-        this.width = width || 20;
-        this.height = height || 20;
-        // 食物颜色
-        this.color = color || "RED";
-    }
-
-    Food.prototype.init = function (map){
-        var food = document.createElement("div");
-        map.appendChild(food);
-        // 脱离文档流
-        food.style.position = "absolute";
-        // 设置样式
-        food.style.width = this.width+"px";
-        food.style.height = this.height+"px";
-        food.style.backgroundColor = this.color;    //注意：是backgroundColor，不是color
-        // 生成并设置随机坐标
-        // 注意：offsetWidth、offsetHeight中的s是小写
-        this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
-        this.y = parseInt(Math.random() * (map.offsetHeight / this.height)) * this.height;
-        food.style.left = this.x + "px";
-        food.style.top =  this.y + "px";
+    
+    // 自调用函数-->食物
+    (function (){
+        // 删除之前的🍞
+        remove();
         
-        elements.push(food);
-    }
-    window.Food = Food;
+        // 存放食物
+        var elements = [];
+        // 食物的构造方法
+        function Food(x,y,width,height,color){
+            // 坐标
+            this.x = x || 0;
+            this.y = y || 0;
+            // 食物的大小
+            this.width = width || 20;
+            this.height = height || 20;
+            // 食物颜色
+            this.color = color || "#555";
+        }
 
-}());
+        Food.prototype.init = function (map){
+            var food = document.createElement("div");
+            map.appendChild(food);
+            // 脱离文档流
+            food.style.position = "absolute";
+            // 设置样式
+            food.style.width = this.width+"px";
+            food.style.height = this.height+"px";
+            food.style.backgroundColor = this.color;    //注意：是backgroundColor，不是color
+            // 生成并设置随机坐标
+            // 注意：offsetWidth、offsetHeight中的s是小写
+            this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
+            this.y = parseInt(Math.random() * (map.offsetHeight / this.height)) * this.height;
+            food.style.left = this.x + "px";
+            food.style.top =  this.y + "px";
+            // 加入到elements数组中----目的是为了删除
+            elements.push(food);
+        };
+
+        // 删除
+        function remove(){
+            for(var i=0;i<elements;i++){
+                elements[i].parentNode.removeChild(elements[i]);
+                elements.splice(i,1);
+            }
+        };
+        window.Food = Food;
+
+    }());
+
+    // 自调用函数--> 小蛇
+    (function(){
+        var elements = [];
+        //
+        function Snake(width,height,direction){
+            this.width = width || 20;
+            this.height = height || 20;
+            this.body = [
+                {x:3,y:3,color:"red"},  //头部
+                {x:2,y:3,color:"orange"},   // 身体
+                {x:1,y:3,color:"orange"}    // 身体
+            ];
+            this.direction = direction;
+        };
+        Snake.prototype.init = function(map){
+            // 删除之前的🐍
+            remove();
+            for(var i=0;i<this.body.length;i++){
+                // 创建元素并添加到地图
+                var div = document.createElement("div");
+                map.appendChild(div);
+                div.style.width = this.width+"px";
+                div.style.height = this.height+"px";
+                div.style.position= "absolute";
+                div.style.left = this.body[i].x * this.width+"px" ;
+                div.style.top = this.body[i].y * this.height+"px" ;
+                div.style.backgroundColor = this.body[i].color;
+
+                elements.push(div);
+            }
+
+        };
+        // 删除
+        function remove(){
+            for(var i=0;i<elements;i++){
+                elements[i].parentNode.removeChild(elements[i]);
+                elements.splice(i,1);
+            }
+        };
+        window.Snake = Snake;
+    }());
+
+    // 测试代码
     var food = new Food();
+    var snake = new Snake();
     food.init(document.querySelector(".map"));
+    snake.init(document.querySelector(".map"));
 </script>
 </html>
