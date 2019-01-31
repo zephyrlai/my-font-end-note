@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+    <style>
+    .map{
+        width: 800px;
+        height: 600px;
+        background-color: #ccc;
+        position: relative;
+        z-index:-1;
+    }
+    </style>
+</head>
+<body>
+    <div class="map"></div>
+</body>
+<script>
+// 食物
+(function (){
+    // 存放食物
+    var elements = [];
+    // 食物的构造方法
+    function Food(x,y,width,height,color){
+        // 坐标
+        this.x = x || 0;
+        this.y = y || 0;
+        // 食物的大小
+        this.width = width || 20;
+        this.height = height || 20;
+        // 食物颜色
+        this.color = color || "RED";
+    }
+
+    Food.prototype.init = function (map){
+        var food = document.createElement("div");
+        map.appendChild(food);
+        // 脱离文档流
+        food.style.position = "absolute";
+        // 设置样式
+        food.style.width = this.width+"px";
+        food.style.height = this.height+"px";
+        food.style.backgroundColor = this.color;    //注意：是backgroundColor，不是color
+        // 生成并设置随机坐标
+        // 注意：offsetWidth、offsetHeight中的s是小写
+        this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
+        this.y = parseInt(Math.random() * (map.offsetHeight / this.height)) * this.height;
+        food.style.left = this.x + "px";
+        food.style.top =  this.y + "px";
+        
+        elements.push(food);
+    }
+    window.Food = Food;
+
+}());
+    var food = new Food();
+    food.init(document.querySelector(".map"));
+</script>
+</html>
