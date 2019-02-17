@@ -1,0 +1,202 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+ </head>
+ <body>
+     
+ </body>
+ <script>
+    // code-01 
+    /*function Student(name){
+        this.name = name;
+        console.log(this);
+     };
+     Student.prototype.haha = function(){
+         console.log("哈哈哈哈");
+         console.log(this);
+     }
+     var stu = new Student("张三");
+     console.log(stu);
+     stu.haha(); */
+
+     // code-02 
+     /*function Student(){
+     };
+     function Person(name){
+        this.name = name;
+     };
+     Person.prototype.haha = function(){
+        console.log("haha");
+     };
+     Student.prototype = new Person("zhansan");
+     var stu = new Student();
+     stu.haha();
+     console.dir(Student);
+     console.dir(stu);*/
+
+    //  code-03
+    /* function Person(){
+
+    };
+    var per = new Person();
+    console.log(Person.prototype == per.__proto__);
+    console.log(Person.prototype.__proto__ == Object.prototype);
+    console.log(Object.prototype.__proto__); */
+    // code-04
+    /* // 父类--动物
+    function Animal(color){
+        this.color = color;
+    }
+    Animal.prototype.eat = function(){
+        console.log("吃东西");
+    };
+    // 子类--狗
+    function Dog(weight){
+        this.weight = weight;
+    }
+    Dog.prototype = new Animal("yellow");
+    Dog.prototype.bite = function(){
+        console.log("咬拖鞋");
+    };
+    // 子类的子类--金毛
+    function JinMao(age){
+        this.age = age;
+    }
+    JinMao.prototype = new Dog("20kg");
+    JinMao.prototype.clever = function(){
+        console.log("机智");
+    }
+    console.dir(new Animal("grey"));
+    console.dir(new Dog("30kg"));
+    console.dir(new JinMao("5岁"));
+    var jinMao = new JinMao("6岁");
+    jinMao.eat();
+    jinMao.bite();
+    jinMao.clever(); */
+
+    // code-05
+    /* function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.haha = function(){
+        console.log("haha");
+    }
+    function Student(name,age,score){
+        Person.call(this,name,age,score);
+        this.score = score;
+    }
+    var stu = new Student("张三",18,99);
+    console.dir(stu);
+    stu.haha(); */
+    // code-06
+    /* function Person(name,age){
+        this.name = name;
+        this.age = age;
+    };
+    Person.prototype.haha = function(){
+        console.log("hahahah");
+    };
+    function Student(name,age,score){
+        // 借用父级构造函数继承父类属性
+        Person.call(this,name,age,score);
+        this.score = score;
+    }
+    // 改变原型指向（指向不含属性的父类对象），仅继承父类的原型方法
+    Student.prototype = new Person();
+    Student.prototype.study = function(){
+        console.log("学习学习");
+    };
+    var student = new Student("小明",18,90);
+    console.dir(student);
+    student.haha();
+    student.study(); */
+    // code-07
+    /* function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.haha = function(){
+        console.log("haha");
+    }
+
+    var per = new Person("张三",19);
+    var obj = {};
+    for(var key in per){
+        obj[key] = per[key];
+    }
+    console.dir(obj);
+    obj.haha(); */
+    // code08
+    /* // 函数的声明
+    function f1(){
+        console.log(111);
+    }
+    // 函数表达式
+    var f2 = function(){
+        console.log(222);
+    }
+    f1();
+    f2(); */
+    //code09
+    /* // 不同函数的调用方式
+    function f1(){
+        console.log("1111");
+    }
+    f1();// 普通函数：直接调用
+    function Person(){
+        console.log("this is a constructor");
+    }
+    var per = new Person();//构造函数：通过‘new’关键字调用
+    function Game(){
+        this.play = function(){
+            console.log("play~");
+        }
+    }
+    new Game().play();// 对象方法：通过[对象.方法]的形式调用； */
+    // code10 
+    /*function f1(){};
+    console.dir(f1);
+    console.log(f1.__proto__ == Function.prototype); */
+    // code11
+    /* // 数组中函数的调用
+    var arr = [
+        function(){
+            console.log(11);
+        },
+        function(){
+            console.log(22);
+        },
+        function(){
+            console.log(33);
+        },
+        function(){
+            console.log(44);
+        }
+    ];
+    // 回调函数：将函数作为参数传入
+    arr.forEach(function(ele){
+        ele();
+    }); */
+
+
+     /* 提到的零散知识点 */
+     /* 0101
+     function Person(){
+
+     }
+     var per = new Person();
+     // 在js中，只要是通过【对象.xxx】形式调用该对象未定义的xxx属性，就间接定义了该对象中的xxx属性
+     console.log(per.wrehtjewfgberf);
+     // 而直接使用一个未定义的xxx变量，则会报错
+     console.log(trhjhngbfaergthey);*/
+     // 0102
+    /* console.log(Object.prototype.__proto__);
+    console.log(new Object().__proto__);
+    console.log(new Object().__proto__.__proto__); */
+ </script>
+ </html>

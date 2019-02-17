@@ -125,7 +125,10 @@
     // 自调用函数：游戏
     // 构造函数（暴露给window）、初始化（原型）、小蛇移动的定时方法（原型，边界撞击），按键按下检测（原型）
     (function(){
-
+        function Game(){
+            this.food = new Food();
+            this.snake = new Snake();
+        };
     }());
 
     // 测试
