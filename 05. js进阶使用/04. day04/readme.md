@@ -78,6 +78,25 @@
     函数实参的个数
 1. caller属性
     函数调用者
+1. 代码：  
+    ``` js
+    function f1(){
+        console.log("f1===========");
+        console.log("haha");
+        console.log(f1.name);
+        console.log(f1.arguments);
+        console.log(f1.length);
+        console.log(f1.caller);
+    }
+    f1(1,2,3,4,5);
+    function f2(){
+        console.log("f2===========");
+        f1();
+    }
+    f2();
+    ```  
+1. 结果：  
+    ![image text](images/函数成员01.png)
 
 ## 三、高阶函数（函数作为参数、函数作为返回值）【了解】
 
