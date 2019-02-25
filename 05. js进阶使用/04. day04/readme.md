@@ -213,10 +213,88 @@
             ![image text](images/预解析01.png) 
 
 ## 五、闭包【重点】
+1. 概念：函数A中有一个函数B，而函数B使用了函数A中的变量（或数据），此时就形成了闭包（暂时可以这样理解，并不完全严谨）
+1. 作用：缓存数据、延长作用域链
+1. 优点（也是缺点）：缓存数据
+1. 分类：
+    1. 函数模式的闭包
+        1. 代码：  
+            ``` js
+            function funcA(){
+                var num = 10;
+                function funcB(){
+                    console.log(num);
+                }
+                funcB();
+            }
+            funcA();    
+            ```
+        1. 效果：  
+         ![image text](images/闭包01.png)
+    1. 对象模式的闭包
+        1. 代码：  
+            ``` js
+            function myFunc(){
+                var obj1={
+                    name:"haha"
+                }
+                console.log(obj1.name);
+            }
+            myFunc();   
+            ```
+        1. 效果：  
+         ![image text](images/闭包02.png)
+1. 一个小案例：  
+    1. 代码：  
+        ``` js
+        // 注意 myFunc01与myFunc02的区别
+        function myFunc01(){
+            var num=10;
+            num++;
+            console.log(num);
+        }
+        myFunc01();
+        myFunc01();
+        myFunc01();
+
+        console.log("----------------")
+
+        function myFunc02(){
+            var num = 10;
+            return function(){
+                num++;
+                console.log(num);
+            }
+        }
+        var myFunc03 = myFunc02();
+        myFunc03();
+        myFunc03();
+        myFunc03();
+        ```
+    1. 效果：  
+        ![image text](images/闭包案例01.png)
+1. 基于闭包的点赞功能实现
+    1. 代码：详见同目录下"闭包实现点赞.html"文件
+    1. 效果：  
+         ![image text](images/基于闭包的点赞实现01.gif)
+
 
 ## 六、沙箱【重点】
-
-## 七、递归
+1. 就是创建一个与世隔绝的。。。。emmmm，容器？空间？代码块？然后这部分的代码不会影响到别的代码，也不会受到别的代码的影响
+1. 2种创建形式：
+    1. ```(/* code */)(); ```
+    1. ```(/* code */()); ```
+1. 代码： 
+    ``` js
+    (function haha(){
+        console.log(111);
+    })();
+    (function haha(){
+        console.log(222)
+    }());
+    ```
+1. 结果：  
+    ![image text](images/沙箱01.gif)
 
 ## PS：零散知识点：
 1. 创建对象的三种形式：字面量方式、调用系统构造函数、调用自定义构造函数：

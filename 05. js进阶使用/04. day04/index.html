@@ -146,7 +146,7 @@
     // console.dir(filmArr.sort(genMyComparator("date"))); */
 
     // code 10
-    var noValue01;
+    /* var noValue01;
     console.log("仅声明未赋值的情况：",noValue01);
     // console.log("未声明未赋值的情况",noValue02); // 报错
     console.log("未声明未赋值，但预解析了：",noValue03);
@@ -160,7 +160,58 @@
     // console.log("未声明未赋值的情况",myFunction03); // 报错
     var myFunction02 = function(){
         //code
+    } */
+
+    // code 11
+    /* function funcA(){
+        var num = 10;
+        function funcB(){
+            console.log(num);
+        }
+        funcB();
     }
+    funcA(); */
+
+    //code 12
+    /* function myFunc(){
+        var obj1={
+            name:"haha"
+        }
+        console.log(obj1.name);
+    }
+    myFunc(); */
+
+    // code 13
+    function myFunc01(){
+        var num=10;
+        num++;
+        console.log(num);
+    }
+    myFunc01();
+    myFunc01();
+    myFunc01();
+
+    console.log("----------------")
+
+    function myFunc02(){
+        var num = 10;
+        return function(){
+            num++;
+            console.log(num);
+        }
+    }
+    var myFunc03 = myFunc02();
+    myFunc03();
+    myFunc03();
+    myFunc03();
+
+    // code 14
+    /* (function haha(){
+        console.log(111);
+    })();
+    (function haha(){
+        console.log(222);
+    }()); */
 
 
     // 零散知识点01：创建对象的三种形式
