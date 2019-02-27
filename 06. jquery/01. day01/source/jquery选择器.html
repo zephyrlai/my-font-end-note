@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .cls{
+        width: 100px;
+        height: 80px;
+        margin-top: 10px;
+        background-color: #777;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        // 标签选择器
+        $("input").click(function(){
+            // 类选择器
+            $(".cls").css("background-color","#ddd");
+            $(".cls").css("border","2px solid black");
+        });
+    })
+</script>
+<body>
+    <input type="button" value="按钮">
+    <div class="cls">有类样式</div>
+    <div class="cls">有类样式</div>
+    <div class="cls">有类样式</div>
+    <div >哈哈哈，没有类样式</div>
+</body>
+
+</html>

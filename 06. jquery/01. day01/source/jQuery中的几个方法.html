@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input").click(function(){
+            console.log("当前按钮的值是：",$(this).val());
+            $(this).val("被点击了");
+            console.log("文本内容是：",$("p").text()); 
+            $("p").text("文本内容改变");
+            $("div").html("<span>又来一个文本</span>") ;
+            $("body").css("background-color","#aaa");
+        })
+    })
+</script>
+<body>
+    <input type="button" value="哈哈哈">
+    <p>假装是文本</p>
+    <div></div>
+</body>
+
+</html>

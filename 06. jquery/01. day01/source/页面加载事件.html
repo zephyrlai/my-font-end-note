@@ -6,7 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    // 无效
+    $("input").click(function(){
+        console.log("haha无效");
+    })
+    /* window.onload = function(){
+        $("input").click(function(){
+            console.log("haha有效01");
+        })
+    }
+    window.onload = function(){
+        $("input").click(function(){
+            console.log("haha有效02");
+        })
+    } */
+    $(window).load(function(){
+        $("input").click(function(){
+            console.log("haha,jquery有效01");
+        })
+    });
+    $(document).ready(function(){
+        $("input").click(function(){
+            console.log("haha,jquery有效02");
+        });
+    });
+    jQuery(function(){
+        $("input").click(function(){
+            console.log("haha,jquery有效03");
+        });
+    });
+    $(function(){
+        $("input").click(function(){
+            console.log("haha,jquery有效04");
+        });
+    })
+</script>
 <body>
     <input type="button" value="按钮">
 </body>

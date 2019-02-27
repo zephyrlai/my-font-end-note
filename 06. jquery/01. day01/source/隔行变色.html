@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input").click(function(){
+            $("ul>li:odd").css("background-color","#aaa");
+            $("ul>li:even").css("background-color","#555");
+        });
+    })
+</script>
+<body>
+    <input type="button" value="点击变色">
+    <ul>
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+        <li>44</li>
+        <li>55</li>
+        <li>66</li>
+        <li>77</li>
+        <li>88</li>
+        <li>99</li>
+        <li>10</li>
+    </ul>
+</body>
+</html>
