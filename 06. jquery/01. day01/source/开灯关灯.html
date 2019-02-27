@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <input type="button" value="开灯">
+</body>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $("input").click(function(){
+        if($(this).val() == "关灯"){
+            $("body").css("background-color","#333");
+            $(this).val("开灯");
+        }else if($(this).val() == "开灯"){
+            $("body").css("background-color","");
+            $(this).val("关灯");
+        }
+    })
+</script>
+</html>

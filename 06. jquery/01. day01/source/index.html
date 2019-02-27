@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn01">按钮01</button>
+    <button id="btn02">按钮02</button>
+    <!-- <p>112233</p>
+    <p>112233</p>
+    <p>112233</p>
+    <p>112233</p>
+    <p>112233</p> -->
+</body>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    /* $("#btn").click(function(){
+        $("p").text("jquery");
+    }) */
+</script>
+<script>
+    // 原生js
+    /* document.getElementById("btn").onclick = function(){
+        var pArr = document.getElementsByTagName("p");
+        for (var i = 0; i < pArr.length; i++) {
+            pArr[i].innerText="hahaha";            
+        }
+    } */
+</script>
+
+<script>
+    // dom对象与jQuery对象互转
+    var domObj = document.getElementById("btn01");
+    var jqueryObj = $("#btn02");
+    domObj.onclick = function(){
+        console.log("dom");
+    }
+    jqueryObj.click(function(){
+        console.log("jquery");
+    })
+    $(domObj).click(function(){
+        console.log("dom-->jquery");
+    })
+    jqueryObj[0].onclick = function(){
+        console.log("jquery-->dom");
+    }
+</script>
+</html>

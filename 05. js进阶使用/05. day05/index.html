@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .one-line{
+            background-color: #EEE;
+            width: 100px;
+            height: 30px;
+
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .more-line{
+            background-color: #EEE;
+            width: 100px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }*/
+        /* 悬浮全部显示 */
+        /*div:hover{
+            overflow:visible;
+            width:350px;
+            display:block;
+        } */
+    </style>
+</head>
+<body>
+   <!--  <div class="one-line">
+        单行单行单行单行单行单行单行单行单行单行
+    </div>  
+    <div class="more-line">
+        多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行多行
+    </div> -->
+</body>
+<script>
+    var obj1={
+        name:"haha",
+        attr:{
+            a1:"haha",
+            a2:11
+        }
+    }
+    var obj2={};
+    for (var key in obj1) {
+        obj2[key] = obj1[key];
+    }
+    console.dir(obj1);
+    console.dir(obj2);
+
+</script>
+</html>
