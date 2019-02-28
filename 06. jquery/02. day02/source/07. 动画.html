@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 150px;
+        background-color: #ccc;
+        display: none;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        /* 回调函数在show、hide、slideUp、slideDown、slideToggle、fadeIn、fadeOut、fadeToggle中都有*/
+        $("#show").click(function(){
+            $("div").show(1000,function(){
+                console.log("显示");
+            });
+        });
+        $("#hide").click(function(){
+            $("div").hide(1000,function(){
+                console.log("隐藏");
+            });
+        });
+        // slideUp、slideDown、slideToggle
+        $("#slideShow").click(function(){
+            $("div").slideDown(1000);
+        });
+        $("#slideHide").click(function(){
+            $("div").slideUp(1000);
+        });
+        $("#slideChange").click(function(){
+            $("div").slideToggle(1000);
+        });
+        /*  fadeIn、fadeOut、fadeToggle*/
+        $("#fadeShow").click(function(){
+            $("div").fadeIn(1000);
+        });
+        $("#fadeHide").click(function(){
+            $("div").fadeOut(1000);
+        });
+        $("#fadeChange").click(function(){
+            $("div").fadeToggle(1000);
+        });
+    })
+</script>
+<body>
+    <input id="show" type="button" value="直接显示">
+    <input id="hide" type="button" value="直接隐藏">
+    <input id="slideShow" type="button" value="滑入显示">
+    <input id="slideHide" type="button" value="滑出隐藏">
+    <input id="slideChange" type="button" value="滑动切换">
+    <input id="fadeShow" type="button" value="淡入">
+    <input id="fadeHide" type="button" value="淡出">
+    <input id="fadeChange" type="button" value="淡入淡出切换">
+    <div></div>
+</body>
+</html>

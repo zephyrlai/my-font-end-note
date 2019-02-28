@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input").click(function(){
+            // 取值
+            console.log($(this).val());
+            // 设置值
+            console.log($(this).val("哈哈哈"));
+            // 链式编程
+            console.log($(this).val("哈哈哈哈").html("<p>112233</p>"));
+        })
+    })
+</script>
+<body>
+    <input type="button" value="哈哈">
+</body>
+</html>

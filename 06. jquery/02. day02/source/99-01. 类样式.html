@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .cls{
+        background: #000;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("#btn01").click(function(){
+            if($("body").hasClass("cls")){
+                $("body").removeClass("cls");
+            }else{
+                $("body").addClass("cls");
+            }
+        });
+
+        $("#btn02").click(function(){
+            $("body").toggleClass("cls");
+        });
+    })
+</script>
+<body>
+    <input id="btn01" type="button" value="点击01">
+    <input id="btn02" type="button" value="点击02">
+</body>
+</html>
