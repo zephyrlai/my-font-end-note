@@ -33,7 +33,7 @@
     </body>
     ```
 1. 效果：  
-    ![image text]("images/索引选择器01.gif")
+    ![image text](images/索引选择器01.gif)
 1. 案例：面板切换
     1. 思路：首先隐藏所有的子菜单，然后鼠标移入时，隐藏所有菜单（目的是清除之前可能的鼠标移入显示的菜单），然后将鼠标所在面板的菜单显示出来，注意在show()、hide()前加上stop()（目的：清除未完成的动画效果）
     1. 代码：  
@@ -51,7 +51,7 @@
         </script>
         ```
     1. 效果：  
-        ![image text]("images/面板切换.gif")
+        ![image text](images/面板切换01.gif)
 
 ## 2. 元素的样式操作
 1. 三种操作样式的方式
@@ -220,6 +220,50 @@
         ![image text]("images/动画02.gif")  
 
 ## 6. 元素的创建
+1. append()、appendTo()
+    1. append()：用法```父元素.append(新元素)```，有点类似于父类元素主动添加了新元素（新元素被添加到了父元素中）
+    1. appendTo()：用法```新元素.appendTo(父元素)```，有点类似于新元素主动添加到了父元素上
+    1. 代码： 
+        ``` js
+        $("input:first").click(function(){
+            $("div").append($("<a href='https://baidu.com'>百度1</a>"));
+        });
+        $("input:last").click(function(){
+            ($("<a href='https://baidu.com'>百度2</a>")).appendTo($("div"));
+        });
+        ```
+    1. 效果：  
+        ![image text](images/添加元素01.gif)
+1. 注意的问题：
+    1. append、appendTo相当于是剪切元素，如果希望复制元素，则需要在append、appendTo前面链式调用一下clone方法
+    1. 代码：  
+        ``` js
+        <script>
+            $(function(){
+                $("input:first").click(function(){
+                    $("#dv1>p").appendTo($("#dv2"));
+                })
+                $("input:last").click(function(){
+                    $("#dv3>p").clone().appendTo($("#dv4"));
+                })
+                
+            })
+        </script>
+        <body>
+            <input type="button" value="点击剪切">
+            <input type="button" value="点击复制">
+            <div class="container">
+                <div id="dv1"><p>11</p></div>
+                <div id="dv2"></div>
+                <div id="dv3"><p>22</p></div>
+                <div id="dv4"></div>
+            </div>
+        </body>
+        ```  
+    1. 效果：  
+        ![image text](images/添加元素02.gif)  
+
+
 
 ## 零散知识点
 1. 类样式：
@@ -251,5 +295,12 @@
         </body>
         ```  
     1. 效果：  
-        ![image text]("images/类样式01.gif")
+        ![image text](images/类样式01.gif)
+1. 几个容易混淆的对象：  
+    1. __内置对象__:js中系统自带的,Array,Object,Date,Math,RegExp
+    1. __浏览器对象__: window
+    1. __自定义对象__: 自己定义的构造函数创建的对象
+    1. __DOM对象__: 通过DOM方式获取的对象
+    1. __jQuery对象__: 通过jQuery方式获取的对象
+
 

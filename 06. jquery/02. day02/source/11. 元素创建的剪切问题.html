@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        margin-bottom: 10px;
+    }
+    .container{
+        width: 250px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        background-color: #fff;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input:first").click(function(){
+            $("#dv1>p").appendTo($("#dv2"));
+        })
+        $("input:last").click(function(){
+            $("#dv3>p").clone().appendTo($("#dv4"));
+        })
+        
+    })
+</script>
+<body>
+    <input type="button" value="点击剪切">
+    <input type="button" value="点击复制">
+    <div class="container">
+        <div id="dv1"><p>11</p></div>
+        <div id="dv2"></div>
+        <div id="dv3"><p>22</p></div>
+        <div id="dv4"></div>
+    </div>
+</body>
+
+</html>

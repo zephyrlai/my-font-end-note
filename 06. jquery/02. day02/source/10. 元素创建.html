@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        border:1px solid #ccc;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input:first").click(function(){
+            $("div").append($("<a href='https://baidu.com'>百度1</a>"));
+        });
+        $("input:last").click(function(){
+            ($("<a href='https://baidu.com'>百度2</a>")).appendTo($("div"));
+        });
+    })
+</script>
+<body>
+    <input type="button" value="被动创建">
+    <input type="button" value="主动创建">
+    <div></div>
+</body>
+</html>
