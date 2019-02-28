@@ -81,7 +81,7 @@
     })
     ```
 1. 效果：  
-    ![image text]("images/链式编程01.png")
+    ![image text](images/链式编程01.png)
 
 ## 4. 筛选器
 1. 常用筛选器：  
