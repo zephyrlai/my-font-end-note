@@ -183,7 +183,7 @@
         });
         ```
     1. 效果：  
-        ![image text]("images/动画01.gif")  
+        ![image text](images/动画01.gif)  
 1. animate函数
     1. 3个参数：    
         1. 键值对：存放css样式
@@ -197,7 +197,7 @@
         })
         ```
     1. 效果：  
-        ![image text]("images/动画03.gif")  
+        ![image text](images/动画03.gif)  
 1. 案例：图片递归显示与隐藏
     1. 思路：
         1. 隐藏：从最后一个元素开始隐藏，每次隐藏完成之后，再利用回调函数，隐藏当前元素的前一个元素  
@@ -217,7 +217,7 @@
         });
         ```  
     1. 效果：  
-        ![image text]("images/动画02.gif")  
+        ![image text](images/动画02.gif)  
 
 ## 6. 元素的创建
 1. append()、appendTo()
