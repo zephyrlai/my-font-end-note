@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 100px;
+        background-color: #ccc;
+        margin: 20px 0px;
+    }
+    p{
+        background-color: #888;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("#append").click(function(){
+            $("div").append($("<p>append创建</p>"))
+        });
+        $("#prepend").click(function(){
+            $("div").prepend($("<p>prepend创建</p>"))
+
+        });
+        $("#before").click(function(){
+            $("div").before($("<p>before创建</p>"))
+        });
+        $("#after").click(function(){
+            $("div").after($("<p>after创建</p>"))
+        });
+    })
+</script>
+<body>
+    <input id="append" type="button" value="append创建">
+    <input id="prepend" type="button" value="prepend创建">
+    <input id="before" type="button" value="before创建">
+    <input id="after" type="button" value="after创建">
+    <div><p>原始就存在的内容</p></div>
+</body>
+</html>

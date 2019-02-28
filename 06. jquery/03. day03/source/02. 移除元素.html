@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        border:1px solid #ccc;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+       $("#html").click(function() {
+           $("#htmlDiv").html("");
+       });
+       $("#empty").click(function() {
+           $("#emptyDiv").empty();
+       });
+       $("#remove").click(function() {
+           $("#removeDiv").remove();
+       });
+    })
+</script>
+<body>
+    <input id="html" type="button" value="点击html('')">
+    <input id="empty" type="button" value="点击empty()">
+    <input id="remove" type="button" value="点击remove()">
+    <div id="htmlDiv" >11</div>
+    <div id="emptyDiv">22</div>
+    <div id="removeDiv">33</div>
+</body>
+</html>

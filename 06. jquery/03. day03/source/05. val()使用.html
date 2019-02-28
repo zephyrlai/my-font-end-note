@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input").click(function(){
+            $("#sel").val("4");
+            $("#text01").val("33333333333333333333333");    
+            $("#text02").text("44444444444444444444444");    
+        });
+    })
+</script>
+<body>
+    <input type="button" value="点击修改">
+    <select name="haha" id="sel">
+        <option value="1">11</option>
+        <option value="2">22</option>
+        <option value="3">33</option>
+        <option value="4">44</option>
+        <option value="5">55</option>
+    </select>
+    <textarea name="haha01" id="text01" cols="30" rows="10">1111111111111111111111</textarea>
+    <textarea name="haha02" id="text02" cols="30" rows="10">2222222222222222222222</textarea>
+</body>
+</html>

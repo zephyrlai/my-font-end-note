@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .table{
+        width: 200px;
+        height: 300px;
+        border: 1px solid #ccc;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        var arrData=[
+            {"name":"百度","href":"https://baidu.com"},
+            {"name":"Google","href":"https://google.com"},
+            {"name":"爱奇艺","href":"https://iqiyi.com"}
+        ];
+
+        $("input").click(function(){
+            var tableObj = $("<table border='1'></table>");
+            $(".table").append(tableObj);
+            for (var i = 0; i < arrData.length; i++) {
+                var element = arrData[i];
+                console.log(element);
+                var trObj = $("<tr></tr>");
+                tableObj.append(trObj);
+                var tdObj1= $("<td>"+element.name+"</td>");
+                var tdObj2= $("<td><a href='"+element.href+"'>"+element.name+"</a></td>");
+                tdObj1.appendTo(trObj);
+                tdObj2.appendTo(trObj);
+
+                trObj.mouseenter(function(){
+                    $(this).css("background-color","#ccc");
+                }).mouseleave(function(){
+                    $(this).css("background-color","");
+                })
+            }
+        });
+    })
+</script>
+
+
+<body>
+    <input type="button" value="点击创建">
+    <div class="table">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("#btn1").click(function(){
+            if($("#attrRadio1").attr("checked") == undefined){
+                $("#attrRadio1").attr("checked",true);
+            }else{
+                $("#attrRadio1").attr("checked",undefined);
+            }
+        });
+        $("#btn2").click(function(){
+            if($("#propRadio1").prop("checked")){
+                $("#propRadio1").prop("checked",false);
+            }else{
+                $("#propRadio1").prop("checked",true);
+            }
+        })
+    })
+</script>
+<body>
+    <input id="btn1" type="button" value="attr操作"/>
+    <input id="btn2" type="button" value="prop操作"/>
+    <br/>
+    attr操作：
+    <input type="radio" name="attrRadio" id="attrRadio1"/>男
+    <input type="radio" name="attrRadio" id="attrRadio2"/>女
+    <br/>
+    prop操作：
+    <input type="radio" name="propRadio" id="propRadio1"/>男
+    <input type="radio" name="propRadio" id="propRadio2"/>女
+</body>
+</html>
