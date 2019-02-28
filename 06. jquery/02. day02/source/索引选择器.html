@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input").click(function(){
+            // $("ul>li:eq(1)").css("background-color","#ccc");
+            $("ul>li:lt(3)").css("background-color","#ccc");
+            $("ul>li:gt(6)").css("background-color","#666");
+            $("ul>li:lt(7):gt(2)").css("background-color","#999");
+        });
+    })
+</script>
+<body>
+    <input type="button" value="显示效果" id="btn"/>
+    <ul>
+        <li>0任贤齐</li>
+        <li>1张震岳</li>
+        <li>2罗大佑</li>
+        <li>3刘德华</li>
+        <li>4郭富城</li>
+        <li>5张学友</li>
+        <li>6黎明</li>
+        <li>7周星驰</li>
+        <li>8吴孟达</li>
+        <li>9周润发</li>
+    </ul>
+</body>
+</html>
