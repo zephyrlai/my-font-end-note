@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #dv1{
+        width: 300px;
+        height: 300px;
+        background-color: #999;
+    }
+    #dv2{
+        width: 200px;
+        height: 200px;
+        background-color: #bbb;
+    }
+    #dv3{
+        width: 100px;
+        height: 100px;
+        background-color: #ddd;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("#dv1").click(function(){
+            console.log($(this).prop("id"),"被点了");
+        })
+        $("#dv2").click(function(){
+            console.log($(this).prop("id"),"被点了");
+        })
+        $("#dv3").click(function(){
+            console.log($(this).prop("id"),"被点了");
+        });
+        $("input").click(function(){
+            $("div").off();
+            $("#dv1").click(function(){
+                console.log($(this).prop("id"),"被点了");
+                return false;
+            })
+            $("#dv2").click(function(){
+                console.log($(this).prop("id"),"被点了");
+                return false;
+            })
+            $("#dv3").click(function(){
+                console.log($(this).prop("id"),"被点了");
+                return false
+            });
+        })
+    })
+</script>
+<body>
+    <input type="button" value="重新绑定阻止冒泡的点击事件">
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3"></div>
+        </div>
+    </div>
+</body>
+</html>

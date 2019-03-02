@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input:last").focus(function(){
+            $("textarea").text("文本框获得焦点");
+        });
+        $("input:first").click(function(){
+            // $("input:last").focus();
+            // $("input:last").trigger("focus");
+            $("input:last").triggerHandler("focus"); // 不触发浏览器事件（input中不出现光标）
+        });
+    })
+</script>
+<body>
+    <input type="button" value="点击触发文本框聚焦事件"/> <br>
+    <input type="text" style="width: 100px; height: 20px"/> <br>
+    <textarea></textarea>
+</body>
+</html>

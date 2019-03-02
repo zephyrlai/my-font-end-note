@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    li{
+        list-style: none;
+        display: inline;
+        font-size: 30px;
+        color: orange;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("li").mouseenter(function(){
+            $(this).text("★").prevAll("li").text("★").end().nextAll("li").text("☆");
+        }).click(function(){
+            $(this).attr("index","1").siblings("li").removeProp("index");
+        });
+        $("ul").mouseleave(function(){
+            // 清除所有实心的五角星，将含有自定义属性index及其之前的空心五角星设置为实心
+            $(this).find("li").text("☆");
+            // 注意下面的属性筛选器
+            $(this).find("li[index=1]").text("★").prevAll().text("★");
+        })
+    })
+</script>
+<body>
+    <ul>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+</body>
+</html>

@@ -125,12 +125,179 @@
         ```
     1. 效果： 
         ![image text](images/undeletegate解绑01.gif)
-1. 
-    * 按键改变元素的背景颜色
-    * 事件的参数
-    * 事件的触发
+1. off方式的解绑
+    1. 代码：  
+        ``` html
+        <script>
+            $(function(){
+                $("input:first").click(function(){
+                    $("<p>这是文本</p>").appendTo($("div"));
+                    // 通过on方法为div自己绑定事件
+                    $("div").on("mouseenter",function(){
+                        console.log("鼠标移入div");
+                    }).on("mouseleave",function(){
+                        console.log("鼠标移出div");
+                    })
+                    // 通过on方法为子元素绑定事件
+                    .on("mouseenter","p",function(){
+                        console.log("鼠标移入p");
+                    }).on("mouseleave","p",function(){
+                        console.log("鼠标移出p");
+                    })
+                });
+                $("input:last").click(function(){
+                    // 解绑自己及其所有子类的所有事件
+                    // $("div").off(); 
+                    // 解绑自己及其所有子类的所有mouseenter、mouseleave事件
+                    // $("div").off("mouseenter mouseleave"); 
+                    // 解绑所有子类p标签的所有mouseenter事件
+                    // $("div").off("mouseenter","p"); 
+                    // 解绑所有子类p标签的所有事件
+                    // $("div").off("","p"); 
+                    // 解绑所有子类的mouseenter事件
+                    $("div").off("mouseenter","**"); 
+                });
+            })
+        </script>
+        <body>
+            <input type="button" value="绑定">
+            <input type="button" value="解绑">
+            <div></div>
+        </body>
+        ```
+    1. 效果： 
+        ![image text](images/off解绑01.gif)
+## 1. 事件冒泡与阻止冒泡
+1. 核心代码：```return false;```
+1. 代码： 
+    ``` html
+    <script>
+        $(function(){
+            $("#dv1").click(function(){
+                console.log($(this).prop("id"),"被点了");
+            })
+            $("#dv2").click(function(){
+                console.log($(this).prop("id"),"被点了");
+            })
+            $("#dv3").click(function(){
+                console.log($(this).prop("id"),"被点了");
+            });
+            $("input").click(function(){
+                // 解绑事件
+                $("div").off();
+                // 依次重新绑定阻止冒泡的点击事件
+                $("#dv1").click(function(){
+                    console.log($(this).prop("id"),"被点了");
+                    return false;
+                })
+                $("#dv2").click(function(){
+                    console.log($(this).prop("id"),"被点了");
+                    return false;
+                })
+                $("#dv3").click(function(){
+                    console.log($(this).prop("id"),"被点了");
+                    return false
+                });
+            })
+        })
+    </script>
+    <body>
+        <input type="button" value="重新绑定阻止冒泡的点击事件">
+        <div id="dv1">
+            <div id="dv2">
+                <div id="dv3"></div>
+            </div>
+        </div>
+    </body>
+    ```
+1. 结果：  
+    ![image text](images/事件冒泡与阻止冒泡01.gif)
 
-    * 链式编程的原理
+## 1. 事件触发
+1. 什么是事件触发  
+    就是原本需要鼠标或者某些行为触发A元素的a事件，现在通过另一个B元素触发A元素的a事件;
+1. 事件触发的三种方式： 
+    1. ```元素A.事件a();```
+    1. ```元素B.trigger("事件a");```
+    1. ```元素B.triggerHandler("事件a");```
+1. 代码：  
+    ``` html
+    <script>
+        $(function(){
+            $("input:last").focus(function(){
+                $("textarea").text("文本框获得焦点");
+            });
+            $("input:first").click(function(){
+                $("input:last").focus();
+                // $("input:last").trigger("focus");
+                // $("input:last").triggerHandler("focus"); // 不触发浏览器事件（input中不出现光标）
+            });
+        })
+    </script>
+    <body>
+        <input type="button" value="点击触发文本框聚焦事件"/> <br>
+        <input type="text" style="width: 100px; height: 20px"/> <br>
+        <textarea></textarea>
+    </body>
+    ```  
+1. 效果：  
+    ![image text](images/事件触发01.gif)
+
+## 1. 事件参数
+1. 通过查看function中的arguments对象，可以看到其中包含了一个事件参数对象
+1. 案例：获取用户点击鼠标的时候同时按下的快捷键
+    1. 代码：  
+        ``` js
+        $("div").click(function(e){
+            if(e.altKey){
+                console.log("按下alt键，按下了鼠标");
+            }else if(e.shiftKey){
+                console.log("按下shift键，按下了鼠标");
+            }else if(e.ctrlKey){
+                console.log("按下ctrl键，按下了鼠标");
+            }else{
+                console.dir(arguments);
+            }
+        })
+        ```
+    1. 效果：  
+        ![image text](image/事件参数01.gif)
+
+## 1. 链式编程的原理
+1. 案例：星级评分
+    1. 思路：
+    1. 代码： 
+        ``` html
+        <script>
+            $(function(){
+                $("li").mouseenter(function(){
+                    $(this).text("★").prevAll("li").text("★").end().nextAll("li").text("☆");
+                }).click(function(){
+                    $(this).attr("index","1").siblings("li").removeProp("index");
+                });
+                $("ul").mouseleave(function(){
+                    // 清除所有实心的五角星，将含有自定义属性index及其之前的空心五角星设置为实心
+                    $(this).find("li").text("☆");
+                    // 注意下面的属性筛选器
+                    $(this).find("li[index=1]").text("★").prevAll().text("★");
+                })
+            })
+        </script>
+        <body>
+            <ul>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+                <li>☆</li>
+            </ul>
+        </body>
+        ```
+    1. 效果： 
+        ![image text](images/星级评分01.gif)
+
+
+
 
     * each方法的使用
 
@@ -140,3 +307,6 @@
     * 插件的使用
     * 自己做插件
     * UI的使用
+
+## 零散知识点
+1. attr、prop在新增自定义属性上的区别

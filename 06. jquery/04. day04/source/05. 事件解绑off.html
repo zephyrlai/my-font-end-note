@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: #ccc;
+    }
+    p{
+        background-color: #aaa;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        $("input:first").click(function(){
+            $("<p>这是文本</p>").appendTo($("div"));
+            // 通过on方法为div自己绑定事件
+            $("div").on("mouseenter",function(){
+                console.log("鼠标移入div");
+            }).on("mouseleave",function(){
+                console.log("鼠标移出div");
+            })
+            // 通过on方法为子元素绑定事件
+            .on("mouseenter","p",function(){
+                console.log("鼠标移入p");
+            }).on("mouseleave","p",function(){
+                console.log("鼠标移出p");
+            })
+        });
+        $("input:last").click(function(){
+            // 解绑自己及其所有子类的所有事件
+            // $("div").off(); 
+            // 解绑自己及其所有子类的所有mouseenter、mouseleave事件
+            // $("div").off("mouseenter mouseleave"); 
+            // 解绑所有子类p标签的所有mouseenter事件
+            // $("div").off("mouseenter","p"); 
+            // 解绑所有子类p标签的所有事件
+            // $("div").off("","p"); 
+            // 解绑所有子类的mouseenter事件
+            $("div").off("mouseenter","**"); 
+        });
+    })
+</script>
+<body>
+    <input type="button" value="绑定">
+    <input type="button" value="解绑">
+    <div></div>
+</body>
+</html>
