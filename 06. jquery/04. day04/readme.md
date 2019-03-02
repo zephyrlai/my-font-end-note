@@ -65,7 +65,7 @@
     1. 效果：  
         ![image text](images/案例01.gif)
 
-## 1. 元素的事件解绑
+## 2. 元素的事件解绑
 1. 用什么方式绑定的事件，最好就用对应的什么方法解绑事件
 1. bind方式的解绑
     1. ```对象.unbind("事件名01 事件名02 ...")```
@@ -167,7 +167,8 @@
         ```
     1. 效果： 
         ![image text](images/off解绑01.gif)
-## 1. 事件冒泡与阻止冒泡
+
+## 3. 事件冒泡与阻止冒泡
 1. 核心代码：```return false;```
 1. 代码： 
     ``` html
@@ -213,7 +214,7 @@
 1. 结果：  
     ![image text](images/事件冒泡与阻止冒泡01.gif)
 
-## 1. 事件触发
+## 4. 事件触发
 1. 什么是事件触发  
     就是原本需要鼠标或者某些行为触发A元素的a事件，现在通过另一个B元素触发A元素的a事件;
 1. 事件触发的三种方式： 
@@ -243,7 +244,7 @@
 1. 效果：  
     ![image text](images/事件触发01.gif)
 
-## 1. 事件参数
+## 5. 事件参数
 1. 通过查看function中的arguments对象，可以看到其中包含了一个事件参数对象
 1. 案例：获取用户点击鼠标的时候同时按下的快捷键
     1. 代码：  
@@ -263,7 +264,7 @@
     1. 效果：  
         ![image text](image/事件参数01.gif)
 
-## 1. 链式编程的原理
+## 6. 链式编程的原理
 1. 案例：星级评分
     1. 思路：
     1. 代码： 
@@ -296,14 +297,38 @@
     1. 效果： 
         ![image text](images/星级评分01.gif)
 
+## 7. each方法的使用
+1. 是jQuery内置的遍历方法
+1. 代码：  
+    ``` js
+    $("input").click(function(){
+        $("div").each(function(index,ele){
+            var floatNum = index/10;
+            $(ele).css("opacity",floatNum);
+        })
+    })
+    ```
+1. 效果：
+    ![image text](images/each方法使用01.gif)
 
+## 8. 多库共存的变量重名问题
+1. 怎么会引发这种问题：比如刚好引入了多个js库，刚好$都是他们各自的顶级对象，这时就会出现问题
+1. 怎么解决：两种形式（针对jquery的$）  
+    1. 不使用$变量，转而使用jQuery变量
+    1. 使用```$.noConflict();```重新定义jQuery的顶级对象
+1. 代码：  
+    ``` js
+    var abc = $.noConflict();
+        abc(function(){
+            abc("input").click(function(){
+                console.log(123);
+            });
+    })
+    ```
+1. 效果：  
+    ![image text](images/多库并存问题01.gif)
 
-
-    * each方法的使用
-
-    * 包装集
-
-    * 多库共存
+## 9.
     * 插件的使用
     * 自己做插件
     * UI的使用
