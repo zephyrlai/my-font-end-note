@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="checkDemo.css"/>
+    <title>Document</title>
+  </head>
+  <script src="jquery-1.12.2.js"></script>
+  <script>
+    $(function(){
+      // 方法
+      function closeFrame(){
+          $("#j_mask").hide();
+          $("#j_formAdd").hide();
+      };
+      function openFrame(){
+          $("#j_mask").show();
+          $("#j_formAdd").show();
+      };
+
+      // 事件
+      $("#j_btnAddData").click(function(){
+          openFrame();
+          $("#j_txtLesson").val("");
+          $("#j_txtBelSch").val("传智播客-前端与移动开发学院");
+      });
+      $("#j_hideFormAdd").click(function(){
+          closeFrame();
+      });
+      $("table").on("click","a",function(){
+        $(this).parent().parent().remove();
+      });
+      $("#j_btnAdd").click(function(){
+        var nameObj = $("#j_txtLesson");
+        var academyObj = $("#j_txtBelSch");
+        $("<tr>"+"<td>"+nameObj.val()+"</td>"+"<td>"+academyObj.val()+"</td>"+"<td><a href='javascrip:;'class='get'>GET</a></td>"+"</tr>").appendTo($("tbody"));
+        closeFrame();
+      });
+    })
+  </script>
+  <body>
+  <div class="wrap">
+    <div>
+      <input type="button" value="添加数据" id="j_btnAddData" class="btnAdd"/>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>课程名称</th>
+        <th>所属学院</th>
+        <th>已学会</th>
+      </tr>
+      </thead>
+      <tbody id="j_tb">
+      <tr>
+        <td>JavaScript</td>
+        <td>传智播客-前端与移动开发学院</td>
+        <td><a href="javascrip:;" class="get">GET</a></td>
+      </tr>
+      <tr>
+        <td>css</td>
+        <td>传智播客-前端与移动开发学院</td>
+        <td><a href="javascrip:;" class="get">GET</a></td>
+      </tr>
+      <tr>
+        <td>html</td>
+        <td>传智播客-前端与移动开发学院</td>
+        <td><a href="javascrip:;" class="get">GET</a></td>
+      </tr>
+      <tr>
+        <td>jQuery</td>
+        <td>传智播客-前端与移动开发学院</td>
+        <td><a href="javascrip:;" class="get">GET</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="j_mask" class="mask"></div><!--遮挡的div-->
+  <div id="j_formAdd" class="form-add">
+    <div class="form-add-title">
+      <span>添加数据</span>
+  
+      <div id="j_hideFormAdd">x</div>
+    </div>
+    <div class="form-item">
+      <label class="lb" for="j_txtLesson">课程名称：</label>
+      <input class="txt" type="text" id="j_txtLesson" placeholder="请输入课程名称">
+    </div>
+    <div class="form-item">
+      <label class="lb" for="j_txtBelSch">所属学院：</label>
+      <input class="txt" type="text" id="j_txtBelSch" value="传智播客-前端与移动开发学院">
+    </div>
+    <div class="form-submit">
+      <input type="button" value="添加" id="j_btnAdd">
+    </div>
+  </div>
+  
+  
+  </body>
+  
+  </html>

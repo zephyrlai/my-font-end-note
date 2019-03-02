@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: #ccc;
+    }
+    p{
+        cursor: pointer;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        /* $("#btn1").click(function(){
+            $("<p>这是文本文本。。。。。</p>").appendTo($("div"));
+            // 通过delegate方法，为父元素中的子元素绑定方法
+            $("div").delegate("p","click",function(){
+                console.log("我是第"+$(this).index()+"个p")
+            });
+        }); */
+        $("#btn1").click(function(){
+            $("<p>这是文本文本。。。。。</p>").appendTo($("div"));
+            // 通过delegate方法，为父元素中的子元素绑定方法
+            $("div").on("click","p",function(){
+                console.log("我是第"+$(this).index()+"个p")
+            });
+        });
+        $("#btn2").click(function(){
+            $("<p>这是文本文本。。。。。</p>").appendTo($("div"));
+        });
+    })
+</script>
+<body>
+    <input id="btn1" type="button" value="点击01">
+    <input id="btn2" type="button" value="点击02">
+    <div></div>
+</body>
+</html>

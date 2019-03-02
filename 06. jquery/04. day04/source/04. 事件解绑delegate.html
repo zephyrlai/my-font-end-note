@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: #ccc;
+    }
+    p{
+        background-color: #aaa;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        // 创建子元素并绑定事件
+        $("input:first").click(function(){
+            $("<p>这是文本<?p>").appendTo($("div"));
+            $("div").delegate("p","mouseenter",function(){
+                console.log("鼠标移入");
+            }).delegate("p","mouseleave",function(){
+                console.log("鼠标移出");
+            });
+        });
+        // 解绑事件
+        $("input:last").click(function(){
+            $("div").undelegate("p","mouseenter mouseleave");
+        })
+    })
+</script>
+<body>
+    <input type="button" value="绑定">
+    <input type="button" value="解绑">
+    <div></div>
+</body>
+</html>
