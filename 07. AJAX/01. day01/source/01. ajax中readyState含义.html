@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+    console.log("新建xhr对象，readyState=",xhr.readyState);
+    // 自己起了一个后端服务（后端已做跨域配置）
+    xhr.open("get","http://127.0.0.1:8088/getData");
+    xhr.send();
+    console.log("发送请求，readyState=",xhr.readyState);
+    xhr.addEventListener("readystatechange",function(){
+        switch(this.readyState){
+            case 2:
+                console.log("接收到响应头，readyState=",this.readyState);
+                console.log("响应头:",this.getAllResponseHeaders());
+                console.log("文本类型:",this.getResponseHeader("content-type"));
+                break;
+            case 3:
+                console.log("正在接收响应体，readyState=",this.readyState);
+                break;
+            case 4:
+                console.log("接收到响应体，readyState=",this.readyState);
+                console.log("响应体是",this.responseText);
+        }
+    })
+</script>
+</html>

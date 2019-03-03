@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: #ddd;
+        border:5px solid #000;
+    }
+</style>
+<script src="jquery-1.12.1.min.js"></script>
+<script>
+    $(function(){
+        var divObj = $("div");
+        console.log("不包括边框的高度：",divObj.innerHeight());
+        console.log("不包含边框的宽度：",divObj.innerWidth());
+        console.log("包含边框的高度：",divObj.outerHeight());
+        console.log("不好边框的宽度：",divObj.outerWidth());
+    })
+</script>
+<body>
+    <div></div>
+</body>
+</html>
