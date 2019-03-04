@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function myJosnP(url,params,fn){
+        // 随机生成一个函数名
+        var tempFuncName = "jsonp_"+111111;
+        var scriptObj = document.createElement("script");
+        scriptObj.src = url+"?params="+params+"&callback="+tempFuncName;
+        document.body.appendChild(scriptObj);
+        window[tempFuncName] = function(data){
+            fn(data);
+            // 删除临时方法
+            delete window[tempFuncName];    
+            // 删除从后端请求过来并拼接到前端页面的js代码块
+            document.body.removeChild(scriptObj);
+        }
+    };
+    myJosnP("http://localhost:8089/frontEnd/getJs",222,function(haha){
+        console.log(haha);
+    });
+</script>
+</html>

@@ -124,7 +124,151 @@
     1. 效果：  
         ![image text](images/ajax封装02.png) 
 
+## 3. jQuery中Ajax方法的使用
+1. 使用jQuery底层的ajax方法
+    1. 代码：  
+        ``` js
+        $.ajax({
+            url:'http://localhost:8089/frontEnd/queryData',
+            type:'get',
+            // dataType:"application/json",
+            success:function(res){
+                console.log("succ",res);
+            },
+            error:function(res){
+                console.log("fail",res);
+            },
+            complete:function(){
+                console.log("done");
+            }
+        });
+        ```
+    1. 效果：  
+        ![image text](images/jQuery的ajax使用01.png);
+1. 使用jQuery快捷的ajax方法
+    1. 代码：  
+        ``` js
+        $.get("http://localhost:8089/frontEnd/queryData",function(res){
+            console.log("get-succ",res);
+        })
+        $.post("http://localhost:8089/frontEnd/queryData",function(res){
+            console.log("post-succ",res);
+        })
+        $.getJSON("http://localhost:8089/frontEnd/queryData",function(res){
+            console.log("getJson-succ",res);
+        })
+        ```
+    1. 效果：  
+        ![image text](images/jQuery的ajax使用02.png);
+1. jQuery中load方法使用
+    1. load方法的作用：load()方法通过 AJAX 请求从服务器加载数据，并把返回的数据放置到指定的元素中。
+    1. 用法：```父元素.load(url,data,function(response,status,xhr))```
+    1. 注意data参数，如果该字符串中包含一个或多个空格，紧接第一个空格的字符串则是决定所加载内容的 jQuery 选择器。这样就可以有选择地将请求到的html内容添加到父元素中
+    1. 案例：无刷新的页面切换
+        1. 代码：  
+            ``` js
+            $(function ($) {
+                // 这里用到了NProgress.js的进度条
+                // 注册全局ajax请求前动作
+                $(document).ajaxStart(function(){
+                    NProgress.start();
+                })
+                // 注册全局ajax请求完成后动作
+                .ajaxStop(function(){
+                    NProgress.done();
+                })
 
+                $("a").click(function(){
+                    var url = $(this).attr("href");
+                    // 将请求到页面中#main的子元素给到当前页面的#main中
+                    $("#main").load(url+" #main>*")
+                    return false;
+                })
+            })
+            ```
+        1. 效果： 
+            ![image text](images/页面切换02.gif)
+
+## 4. 跨域问题以及JsonP
+1. 什么是跨域？
+    1. 本质上讲，就是浏览器默认不允许ajax请求不同源的接口，至于什么是同源，什么是不同源，看下图  
+        ![image text](images/跨域01.png)
+1. 使用script标签发送跨域请求
+    1. 为什么是script标签：script标签中的src属性可以从任何地址获取到js文件，并且由于js是脚本语言，获取到之后就能立即执行
+    1. 思路（最终版）：
+        1. 在前端的定义好回调函数
+        1. 代码创建script标签，设置其src路径为后端接口地址+"?"+"参数拼接"+"&回调函数名";
+        1. 【异步】后端返回一个函数调用的js代码块，前端自动执行（效果上看，很像ajax）；
+        1. 【异步】前端将创建的script标签append到document.body中
+    1. 前端代码： 
+        ``` html
+        <script>
+            function myFunc(data){
+                console.log(data);
+            }
+        </script>
+        <script>
+            var scriptObj = document.createElement("script");
+            var funcName = "myFunc";
+            scriptObj.src="http://localhost:8089/frontEnd/getJs?funcName="+funcName;
+            document.body.appendChild(scriptObj);
+            // delete funcName;
+            // document.body.removeChild();
+        </script>
+        ```
+    1. 后端代码： 
+        ``` java
+        @RequestMapping("getJs")
+        public String getJavaScript(String funcName){
+            return funcName+"(1111)";
+        }
+        ```
+    1. 效果：
+        ![image text](image/script发送跨域01.png)
+1. JsonP的封装
+    1. 前端代码： 
+        ``` js
+        function myJosnP(url,params,fn){
+            // 随机生成一个函数名
+            var tempFuncName = "jsonp_"+111111;
+            var scriptObj = document.createElement("script");
+            scriptObj.src = url+"?params="+params+"&callback="+tempFuncName;
+            document.body.appendChild(scriptObj);
+            window[tempFuncName] = function(data){
+                fn(data);
+                // 删除临时方法
+                delete window[tempFuncName];    
+                // 删除从后端请求过来并拼接到前端页面的js代码块
+                document.body.removeChild(scriptObj);
+            }
+        };
+        myJosnP("http://localhost:8089/frontEnd/getJs",222,function(haha){
+            console.log(haha);
+        });
+        ```
+    1. 后端代码： 
+        ``` java
+        @RequestMapping("getJs")
+        public String getJavaScript(String callback,String params){
+            return callback+"('1111--"+params+"')";
+        }
+        ```
+    1. 效果： 
+        ![image text](images/封装jsonP.png)
+1. jQuery中jsonp的使用
+    1. 代码：
+        ``` js
+        $.ajax({
+            url:"http://localhost:8089/frontEnd/getJs",
+            dataType: 'jsonp',
+            success: function (res) {
+                console.log(res)
+            },
+            error:function(){
+                console.log('ERR');
+            }
+        })
+        ```
 
 ## 零散知识点
 1. reponse与responseText的区别

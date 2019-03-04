@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="jquery.js"></script>
+<script>
+    // 底层的ajax方法使用
+    /* $.ajax({
+        url:'http://localhost:8089/frontEnd/queryData',
+        type:'get',
+        // dataType:"application/json",
+        success:function(res){
+            console.log("succ",res);
+        },
+        error:function(res){
+            console.log("fail",res);
+        },
+        complete:function(){
+            console.log("done");
+        }
+    }); */
+
+    // 快捷的ajax方法
+    $.get("http://localhost:8089/frontEnd/queryData",function(res){
+        console.log("get-succ",res);
+    })
+    $.post("http://localhost:8089/frontEnd/queryData",function(res){
+        console.log("post-succ",res);
+    })
+    $.getJSON("http://localhost:8089/frontEnd/queryData",function(res){
+        console.log("getJson-succ",res);
+    })
+</script>
+<body>
+    
+</body>
+</html>
