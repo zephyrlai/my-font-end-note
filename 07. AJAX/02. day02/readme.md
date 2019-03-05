@@ -187,7 +187,7 @@
             })
             ```
         1. 效果： 
-            ![image text](images/页面切换02.gif)
+            ![image text](images/load方法02.gif)
 
 ## 4. 跨域问题以及JsonP
 1. 什么是跨域？
@@ -223,8 +223,8 @@
             return funcName+"(1111)";
         }
         ```
-    1. 效果：
-        ![image text](image/script发送跨域01.png)
+    1. 效果：  
+        ![image text](images/script发送跨域请求01.png)
 1. JsonP的封装
     1. 前端代码： 
         ``` js
@@ -253,7 +253,7 @@
             return callback+"('1111--"+params+"')";
         }
         ```
-    1. 效果： 
+    1. 效果：   
         ![image text](images/封装jsonP.png)
 1. jQuery中jsonp的使用
     1. 代码：
