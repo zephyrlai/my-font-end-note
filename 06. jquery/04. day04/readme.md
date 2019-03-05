@@ -328,10 +328,48 @@
 1. 效果：  
     ![image text](images/多库并存问题01.gif)
 
-## 9.
+## 9. 包装集
+1. jQuery中获取的所有的对象，都可以理解成是jQuery对dom的包装
+1. 案例：动态创建元素时，不重复创建（已存在是不创建，不存在时就创建）
+    1. 原理：在jQuery中，可以通过```$(选择器)[索引]```的方式获取当前jQuery对象对应的dom对象，于是，我们可以通过```$(选择器).length```的方式获取元素的数量，而当获取的length为0时，则表示目标元素不存在
+    1. 代码：
+        ``` js
+        $("input").click(function(){
+            if($("p").length==0){
+                $("<p>这是文本</p>").appendTo($("div"));
+            }
+        });
+        ```
+    1. 效果： 
+        ![image text](images/包装集01.gif)
+
+## 10. 插件的制作与使用
+1. 插件制作
+    1. 在js文件夹中，存放2个（类），一个是jQuery的js文件，另一个是插件的js文件
+    1. 将实现基本功能的代码放在插件的js文件中
+    1. css文件夹中放入css样式文件
+    1. 要将封装的js方法添加到jQuery的"$.fn"中
+1. 插件使用
+    1. 引入css文件
+    1. 引入jQuery文件----jquer-1.xx.x.js
+    1. 引入插件的js文件
+    1. 把index.html让复制的html代码加入到自己的body中(div中)
+    1. 把index.html文件中的jQuery代码,复制到自己的script标签中即可
+
     * 插件的使用
     * 自己做插件
     * UI的使用
 
 ## 零散知识点
 1. attr、prop在新增自定义属性上的区别
+1. 几个属性
+    1. 代码： 
+        ``` js
+        console.log("不包括边框的高度：",divObj.innerHeight());
+        console.log("不包含边框的宽度：",divObj.innerWidth());
+        console.log("包含边框的高度：",divObj.outerHeight());
+        console.log("不好边框的宽度：",divObj.outerWidth());
+        ``` 
+    1. 效果： 
+        ![image text](images/几个属性01.png)
+

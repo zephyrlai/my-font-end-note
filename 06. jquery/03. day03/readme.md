@@ -64,7 +64,7 @@
         </body>
         ```
     1. 效果：
-        ![image text](images/元素删除01.gif)
+        ![image text](images/元素移除01.gif)
 1. 案例01：动态创建表格
     1. 代码：  
         ``` html
@@ -175,6 +175,14 @@
 1. 案例：操作单选框与复选框
 1. 注意：在单选框组与复选框中，建议使用prop方法，因为attr方法是一次性的，不能多次使用
 
-## 1. 设置或者是获取元素的选中的问题(单选和复选的)
 ## 1. 元素的样式设置:宽和高,卷曲的距离,offset的系列的属性操作
+1. 代码： 
+    ``` js
+    $("div").width(100).height(100); // jQuery自动加单位px
+    $("div").offset({"left":500,"top":250});
+    console.log($("div").offset());
+    console.log($("div").offset().left);
+    ```
+1. 效果：  
+    ![image text](images/操作宽高与位置01.gif)
 ## 1. jQuery中的事件绑定
