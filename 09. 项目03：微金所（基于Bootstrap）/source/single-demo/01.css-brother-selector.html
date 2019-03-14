@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul.ul01>.haha ~ li{
+        color: #F40;
+    }
+    ul.ul02>.haha + li{
+        color: #F40;
+    }
+</style>
+<body>
+    <ul class="ul01">
+        <li></li>
+        <li class="haha">通用兄弟选择器，选中后续所有</li>
+        <li></li>
+        <li></li>
+        <span>span</span>
+        <li></li>
+    </ul>
+    <ul class="ul02">
+        <li></li>
+        <li class="haha">相邻兄弟选择器，选中后面第一个</li>
+        <li></li>
+        <li></li>
+        <li class="haha">不能与下一个兄弟元素之间不能间隔其他类型的元素，否则不能选中</li>
+        <span>span</span>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

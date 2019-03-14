@@ -1,0 +1,56 @@
+header{
+    height: 42px;
+    line-height: 42px;
+}
+section{
+    height: 100px;
+    width: 100%;
+}
+section:nth-of-type(2n+1){
+    background-color: #aaa;
+}
+
+@font-face{
+    font-family: "myIconFont";
+    src: url('../font/MiFie-Web-Font.eot') format('embedded-opentype'), url('../font/MiFie-Web-Font.svg') format('svg'), url('../font/MiFie-Web-Font.ttf') format('truetype'), url('../font/MiFie-Web-Font.woff') format('woff');
+}
+[class^="icon"], /* 过滤class以icon开头的 */   
+[class*=" icon-"]{  /* 过滤包含icon-的 */
+    font-family: "myIconFont";
+    font-style: normal;
+}
+
+.icon-mobile::before {
+    content: "\e908";
+    font-size: 13px;
+  }
+  
+
+.icon-telephone::before {
+    content: "\e909";
+    font-size: 15px;
+  }
+  
+  .icon-logo::before {
+    content: "\e93e";
+  }
+  
+  .icon-icon::before {
+    content: "\e920";
+  }
+
+
+  /* 头部区域 */
+  header .top-bar{
+    position: relative;
+  }
+  header .top-bar>div + div{
+      border-left: 1px solid #ccc;
+  }
+  header .top-bar img{
+    position: absolute;
+    display: none;
+  }
+  header a:hover > img{
+    display: block;
+  }
