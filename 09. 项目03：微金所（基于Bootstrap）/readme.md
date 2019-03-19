@@ -15,9 +15,6 @@
 1. meta:edge    
     设置浏览器的兼容版本模式（让ie使用最新的渲染引擎工作）  
     ```<meta http-equiv="X-UA-Compatible" content="ie=edge">```
-## 1. Bootstrap笔记
-1. .contrainer类：创建一个水平居中的版心
-1. 栅格系统：
 
 
 ## 1. 零散知识点
@@ -111,3 +108,8 @@
     http://blog.koalite.com/bbg/
 1. 文字与图片基线对齐的css属性：```vertical-align:middle;```
 1. 背景色透明的css属性：```background-color:transparent;```
+1. 自定义bootstrap样式（结合浏览器进行细节调整，以导航栏样式 .nav-default为例）
+    1. 在bootstrap.js中找到所有含有“.nav-default”的css代码并拷贝到自己的css文件（例如：my-navbar.css）中
+    1. 将my-navbar.css中所有的“nav-default”改为自定义样式的名字（例如：nav-zephyr）
+    1. 在浏览器中微调样式，然后在source栏中定位css源码，会写到css文件中
+    1. TODO: 此处缺图
