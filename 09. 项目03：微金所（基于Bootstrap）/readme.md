@@ -107,3 +107,7 @@
     1. [attr=xx]是css的属性选择器
     1. [attr^=abc]是css的属性选择器,表示对以abc __开头__ 的属性所在元素有效
     1. [attr*=def]是css的属性选择器，表示对 __包含__ def的属性所在的元素有效
+1. 自动生成bootstrap按钮样式  
+    http://blog.koalite.com/bbg/
+1. 文字与图片基线对齐的css属性：```vertical-align:middle;```
+1. 背景色透明的css属性：```background-color:transparent;```

@@ -1,0 +1,46 @@
+/* my bootstrap button style */
+.btn-zephyr { 
+    color: #FFFFFF; 
+    background-color: #E92322; 
+    border-color: #DB3B43; 
+  } 
+   
+  .btn-zephyr:hover, 
+  .btn-zephyr:focus, 
+  .btn-zephyr:active, 
+  .btn-zephyr.active, 
+  .open .dropdown-toggle.btn-zephyr { 
+    color: #FFFFFF; 
+    background-color: #E92322; 
+    border-color: #DB3B43; 
+  } 
+   
+  .btn-zephyr:active, 
+  .btn-zephyr.active, 
+  .open .dropdown-toggle.btn-zephyr { 
+    background-image: none; 
+  } 
+   
+  .btn-zephyr.disabled, 
+  .btn-zephyr[disabled], 
+  fieldset[disabled] .btn-zephyr, 
+  .btn-zephyr.disabled:hover, 
+  .btn-zephyr[disabled]:hover, 
+  fieldset[disabled] .btn-zephyr:hover, 
+  .btn-zephyr.disabled:focus, 
+  .btn-zephyr[disabled]:focus, 
+  fieldset[disabled] .btn-zephyr:focus, 
+  .btn-zephyr.disabled:active, 
+  .btn-zephyr[disabled]:active, 
+  fieldset[disabled] .btn-zephyr:active, 
+  .btn-zephyr.disabled.active, 
+  .btn-zephyr[disabled].active, 
+  fieldset[disabled] .btn-zephyr.active { 
+    background-color: #E92322; 
+    border-color: #DB3B43; 
+  } 
+   
+  .btn-zephyr .badge { 
+    color: #E92322; 
+    background-color: #FFFFFF; 
+  }
