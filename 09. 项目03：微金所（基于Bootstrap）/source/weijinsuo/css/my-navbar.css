@@ -39,6 +39,7 @@
 }
 .navbar-zephyr .navbar-toggle {
   border-color: #ddd;
+  margin-top: 25px;
 }
 .navbar-zephyr .navbar-toggle:hover,
 .navbar-zephyr .navbar-toggle:focus {

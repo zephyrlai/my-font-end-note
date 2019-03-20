@@ -15,9 +15,25 @@
 1. meta:edge    
     设置浏览器的兼容版本模式（让ie使用最新的渲染引擎工作）  
     ```<meta http-equiv="X-UA-Compatible" content="ie=edge">```
+## 2. 汉堡菜单的使用
+    1. 将如下代码拷入.nav-header内
+        ``` html
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".my-navbar" aria-expanded="false">
+            <span class="sr-only">切换菜单</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        ```
+    1. data-toggle指以什么事件触发，常用的如collapse,modal,popover,tooltips等；
+    1. data-target指事件的目标，一起使用就是代表data-target所指的元素以data-toggle指定的形式显示。
+    1. 注意在菜单ul外层的div上加个class：.my-navbar
+    1. 效果：  
+        ![image text](images/bargerMenu01.gif)
 
 
-## 1. 零散知识点
+
+## 99. 零散知识点
 1. 条件注释：条件满足时，会执行注释中的HTML代码，如果条件不满足，则作为注释忽略  
     ``` html
     <!--[if lt IE 9]>
@@ -112,4 +128,4 @@
     1. 在bootstrap.js中找到所有含有“.nav-default”的css代码并拷贝到自己的css文件（例如：my-navbar.css）中
     1. 将my-navbar.css中所有的“nav-default”改为自定义样式的名字（例如：nav-zephyr）
     1. 在浏览器中微调样式，然后在source栏中定位css源码，会写到css文件中
-    1. TODO: 此处缺图
+    ![image text](images/customizeBootstrapCss01.gif)
