@@ -15,21 +15,22 @@
 1. meta:edge    
     设置浏览器的兼容版本模式（让ie使用最新的渲染引擎工作）  
     ```<meta http-equiv="X-UA-Compatible" content="ie=edge">```
+
 ## 2. 汉堡菜单的使用
-    1. 将如下代码拷入.nav-header内
-        ``` html
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".my-navbar" aria-expanded="false">
-            <span class="sr-only">切换菜单</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        ```
-    1. data-toggle指以什么事件触发，常用的如collapse,modal,popover,tooltips等；
-    1. data-target指事件的目标，一起使用就是代表data-target所指的元素以data-toggle指定的形式显示。
-    1. 注意在菜单ul外层的div上加个class：.my-navbar
-    1. 效果：  
-        ![image text](images/bargerMenu01.gif)
+1. 将如下代码拷入.nav-header内
+    ``` html
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".my-navbar" aria-expanded="false">
+        <span class="sr-only">切换菜单</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    ```
+1. data-toggle指以什么事件触发，常用的如collapse,modal,popover,tooltips等；
+1. data-target指事件的目标，一起使用就是代表data-target所指的元素以data-toggle指定的形式显示。
+1. 注意在菜单ul外层的div上加个class：.my-navbar
+1. 效果：  
+    ![image text](images/bargerMenu01.gif)
 
 
 

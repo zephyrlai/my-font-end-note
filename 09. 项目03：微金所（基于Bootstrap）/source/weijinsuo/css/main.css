@@ -1,5 +1,5 @@
 header{
-    height: 42px;
+    /* height: 42px; */
     line-height: 42px;
 }
 section{
@@ -63,6 +63,7 @@ section{
   }
   header a:hover > img{
     display: block;
+    z-index: 1001;
   }
 
   /* 导航栏 */
@@ -73,4 +74,21 @@ section{
   }
   .navbar-header .icon-logo{
     color:#555;
+  }
+
+  /* 轮播图 */
+  #main_ad{
+    margin-top: -20px;
+  }
+  #main_ad .item{
+    height: 410px;
+  }
+  .lunbo01{
+    background: url('../images/slide_01_2000x410.jpg') center no-repeat;
+  }
+  .lunbo02{
+    background: url('../images/slide_02_2000x410.jpg') center no-repeat;
+  }
+  .lunbo03{
+    background: url('../images/slide_03_2000x410.jpg') center no-repeat;
   }
