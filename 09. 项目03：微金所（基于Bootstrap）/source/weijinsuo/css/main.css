@@ -3,7 +3,7 @@ header{
     line-height: 42px;
 }
 section{
-    height: 100px;
+    /* height: 100px; */
     width: 100%;
 }
 
@@ -28,13 +28,68 @@ section{
     font-size: 15px;
   }
   
-  .icon-logo::before {
-    content: "\e93e";
-  }
-  
-  .icon-icon::before {
-    content: "\e920";
-  }
+.icon-logo::before {
+  content: "\e93e";
+}
+
+.icon-icon::before {
+  content: "\e920";
+}
+.icon-uniE900:before {
+  content: "\e900";
+}
+
+.icon-uniE901:before {
+  content: "\e901";
+}
+
+.icon-uniE902:before {
+  content: "\e902";
+}
+
+.icon-uniE903:before {
+  content: "\e903";
+}
+
+.icon-uniE904:before {
+  content: "\e904";
+}
+
+.icon-uniE905:before {
+  content: "\e905";
+}
+
+.icon-uniE906:before {
+  content: "\e906";
+}
+
+.icon-uniE907:before {
+  content: "\e907";
+}
+
+.icon-news01:before {
+  content: "\e90e";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news02:before {
+  content: "\e90f";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news03:before {
+  content: "\e910";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news04:before {
+  content: "\e911";
+  font-size: 28px;
+  color: #EAEAEA;
+}
 
 
   /* 头部区域 */
@@ -95,12 +150,52 @@ section{
     width: 100%;
     height: auto;
   }
-  /* .lunbo01{
-    background: url('../images/slide_01_2000x410.jpg') center no-repeat;
-  }
-  .lunbo02{
-    background: url('../images/slide_02_2000x410.jpg') center no-repeat;
-  }
-  .lunbo03{
-    background: url('../images/slide_03_2000x410.jpg') center no-repeat;
-  } */
+  
+  /* 特色专区 */
+.tese{
+  padding-top: 20px;
+  color: #111;
+  padding:40px 0;
+  border-bottom: #111 1px solid;
+}
+.tese > .media-left > a{
+  text-decoration: none;
+}
+.tese .media-left > [class*='icon-uniE9']{
+  font-size: 32px;
+}
+.tese .tese-item>div{
+  margin:20px 0;
+  display: block;
+  text-decoration: none;
+  color: #111;
+}
+.tese .tese-item:hover{
+  color:#E92322;
+}
+
+/* 立即预约 */
+#yuyue{
+  margin:10px 0;
+}
+#yuyue div>p{
+  margin-bottom: 0;
+  font-size: 16px;
+}
+#yuyue div>p>i{
+  margin-right: 5px;
+  font-size: 20px;
+}
+#yuyue div span{
+  color:#E92322
+}
+#yuyue div>p>a{
+  text-decoration: none;
+  display: inline-block;
+  color:#E92322;
+  border-bottom: 1px dashed #E92322;
+}
+#yuyue>.container>a{
+  color: #111;
+  text-decoration: none;
+}
