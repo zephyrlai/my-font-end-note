@@ -80,11 +80,20 @@ section{
   #main_ad{
     margin-top: -20px;
   }
+  @media (min-width:680px){
+    #main_ad .item{
+      height: 410px;
+    }
+
+  }
   #main_ad .item{
-    height: 410px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+  }
+  #main_ad .item img{
+    width: 100%;
+    height: auto;
   }
   /* .lunbo01{
     background: url('../images/slide_01_2000x410.jpg') center no-repeat;

@@ -104,6 +104,40 @@
 1. 效果： 
     ![image text](images/autoPic01.gif)
 
+## 5. 切换到小图后，轮播图等比例缩放
+1. 大图时不变，小图时新增img标签，利用img实现等比例缩放
+1. 代码：
+    ``` js
+    function imgResize(){
+        var windowWidth = $(window).width();
+        var minWidth=680;
+        $("#main_ad .carousel-inner > .item").each(function(index,item){
+            var $item = $(item);
+            if(minWidth>windowWidth){
+                $item.css("backgroundImage","none");
+                $item.html("<img src='"+$item.data("image-sm")+"' alt=''/>");
+                
+            }else{
+                $item.html("");
+                $item.css("backgroundImage","url('"+$item.data("image-lg")+"')");
+            }
+        })
+    }
+    ```
+    ``` css
+    @media (min-width:680px){
+        #main_ad .item{
+        height: 410px;
+        }
+    }
+    #main_ad .item img{
+        width: 100%;
+        height: auto;
+    }
+    ```
+1. 效果：
+    ![image text](images/xiaotu01.gif)
+
 
 
 ## 99. 零散知识点
@@ -202,3 +236,4 @@
     1. 将my-navbar.css中所有的“nav-default”改为自定义样式的名字（例如：nav-zephyr）
     1. 在浏览器中微调样式，然后在source栏中定位css源码，会写到css文件中
     ![image text](images/customizeBootstrapCss01.gif)
+1. TODO:媒体查询
